@@ -3,53 +3,33 @@
 
 # This script will have some main functions:
 # The first function takes two inputs; current amount of stiches, and wanted amount of stiches
-# It will return the correct frequency to increase/decrease
+# It will return the instructions to increase/decrease
+# The instructions will have the format:
+# [[knitXstiches, Y=-1 for decrease or Y=1 for increase, repeatZtimes]]
+# the list can contains multiple instructions.
 # Second function wil print a step-by-step interactive guide to help keeping track of the decreases
 
-# Some test-cases:
-# Ex 1
-# currentStiches = 200
-# wantedStiches = 190
-# Strikk 18 masker, så 2 sammen. Gjør dette 10 ganger.
+def calculateIncDec(currentStiches, wantedStitches):
+    a = currentStiches
+    b = wantedStitches
+    instructions = []
+    y = 1
+    diff = b - a
+    z = abs(diff)
+    modulo = a % z
+    x = a // z
+    if (diff < 0):
+        y = -1
+        x -= 2
+    if (modulo == 0):
+        instructions.append([x, y, z])
+        return instructions
+    first = [x, y, z-modulo]
+    second = [x+1, y, modulo]
+    instructions.append(first)
+    instructions.append(second)
+    return instructions
 
-# Ex 2
-# currentStiches = 190
-# wantedStiches = 200
-# Strikk 19 masker, øk med 1 maske. Gjør dette 10 ganger.
 
-# Ex 3
-# currentStiches = 300
-# wantedStiches = 321
-# Du vil øke 21 masker. Dette må gjøres:
 
-# Strikk 14 masker, øk med 1 maske. × 15
-# Strikk 15 masker, øk med 1 maske. × 6
-# Følg stegene under for å få det helt jevnt.
-
-# Gjør disse stegene 3 ganger:
-# Strikk 14 masker, øk med 1 maske. Gjør dette 2 ganger.
-# Strikk 15 masker, øk med 1 maske.
-# Strikk 14 masker, øk med 1 maske.
-# Gjør disse stegene 3 ganger:
-# Strikk 14 masker, øk med 1 maske. Gjør dette 2 ganger.
-# Strikk 15 masker, øk med 1 maske.
-# Strikk 14 masker, øk med 1 maske. Gjør dette 2 ganger.
-
-# Ex 4
-# currentStiches = 300
-# wantedStiches = 321
-# Du vil felle 21 masker. Dette må gjøres:
-
-# Strikk 13 masker, så 2 sammen. × 15
-# Strikk 14 masker, så 2 sammen. × 6
-# Følg stegene under for å få det helt jevnt.
-
-# Gjør disse stegene 3 ganger:
-# Strikk 13 masker, så 2 sammen. Gjør dette 2 ganger.
-# Strikk 14 masker, så 2 sammen.
-# Strikk 13 masker, så 2 sammen.
-# Gjør disse stegene 3 ganger:
-# Strikk 13 masker, så 2 sammen. Gjør dette 2 ganger.
-# Strikk 14 masker, så 2 sammen.
-# Strikk 13 masker, så 2 sammen. Gjør dette 2 ganger.
-
+    
