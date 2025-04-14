@@ -2,7 +2,7 @@
 # Based on https://hobbyhygge.com/nb/strikkekalkulator
 
 # This script will have some main functions:
-# The first function takes two inputs; current amount of stiches, and wanted amount of stiches
+# The first function takes two inputs; current amount of stitches, and wanted amount of stitches
 # It will return the correct frequency to increase/decrease
 # Second function wil print a step-by-step interactive guide to help keeping track of the decreases
 
