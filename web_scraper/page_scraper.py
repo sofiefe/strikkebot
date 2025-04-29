@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 import csv
 
 
-def load_page(driver):
+def load_page(driver, classname="pattern"):
     # Wait for the cookie consent div to load and click the "Accept All" button
     cookie_button = WebDriverWait(driver, 5).until(
         EC.element_to_be_clickable((By.XPATH, "//button[contains(text(),'Godta')]"))
@@ -16,11 +16,11 @@ def load_page(driver):
 
     # Wait for the pattern divs to appear (10 seconds max)
     WebDriverWait(driver, 10).until(
-        EC.presence_of_all_elements_located((By.CLASS_NAME, "pattern"))
+        EC.presence_of_all_elements_located((By.CLASS_NAME, classname))
     )
 
 def write_links(pattern_info_list):
-    with open("pattern_info.csv", mode="w", newline='', encoding="utf-8") as file:
+    with open("pattern_links.csv", mode="w", newline='', encoding="utf-8") as file:
         writer = csv.writer(file)
         writer.writerow(["Pattern Number", "Link"])  # header
         for pattern_info in pattern_info_list:
